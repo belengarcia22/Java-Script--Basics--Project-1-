@@ -1,1 +1,2 @@
-# Java-Script--Basics--Project-1-
+# Rock-Paper-Scissors
+Odin Project Java Script Foundations

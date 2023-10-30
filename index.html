@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock Paper Scissors</title>
+        <script src="index.js"></script>
+    </head>
+<body>
+  <h1>Rock Paper Scissors</h1>
+  <div id="results"></div>
+
+  <button id="rock">Rock</button>
+  <button id="paper">Paper</button>
+  <button id="scissors">Scissors</button>
+  <script>
+    // Define the player and computer selections
+    const playerSelection = document.getElementById('results');
+    const computerSelection = document.getElementById('computerSelection');
+
+    // Define the running score
+    let playerScore = 0;
+    let computerScore = 0;
+
+    // Add event listeners to the buttons
+    document.getElementById('rock').addEventListener('click', () => {
+      playRound('rock');
+    });
+
+    document.getElementById('paper').addEventListener('click', () => {
+      playRound('paper');
+    });
+
+    document.getElementById('scissors').addEventListener('click', () => {
+      playRound('scissors');
+    });
+
+    // Play a round of the game
+    function playRound(playerSelection) {
+      // Generate a random computer selection
+      const computerSelection = Math.floor(Math.random() * 3);
+
+      // Determine the winner of the round
+      const winner = getWinner(playerSelection, computerSelection);
+
+      // Update the running score
+      if (winner === 'player') {
+        playerScore++;
+      } else if (winner === 'computer') {
+        computerScore++;
+      }
+
+      // Display the results of the round
+      playerSelection.textContent = `You chose ${playerSelection}.`;
+      computerSelection.textContent = `The computer chose ${computerSelection}.`;
+
+      // Announce the winner of the game if one player has reached 5 points
+      if (playerScore === 5) {
+        alert('You win!');
+      } else if (computerScore === 5) {
+        alert('The computer wins!');
+      }
+    }
+
+    // Determine the winner of a round of the game
+    function getWinner(playerSelection, computerSelection) {
+      if (playerSelection === 'rock' && computerSelection === 'scissors') {
+        return 'player';
+      } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
+        return 'player';
+      } else if (playerSelection === 'paper' && computerSelection === 'rock') {
+        return 'player';
+      } else if (computerSelection === 'rock' && playerSelection === 'scissors') {
+        return 'computer';
+      } else if (computerSelection === 'scissors' && playerSelection === 'paper') {
+        return 'computer';
+      } else if (computerSelection === 'paper' && playerSelection === 'rock') {
+        return 'computer';
+      } else {
+        return 'tie';
+      }
+    }
+  </script>
+</body>
+</html>
